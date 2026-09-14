@@ -264,7 +264,7 @@
     border-radius:2px;
   }
   .proj-thumb img{
-    width:100%;height:100%;object-fit:cover;
+    width:100%;height:100%;object-fit:contain;
     filter:grayscale(15%) contrast(1.05);
     transition:transform .6s cubic-bezier(.16,1,.3,1);
   }
@@ -308,7 +308,7 @@
     cursor:zoom-in;
   }
   .map-stage img{
-    width:100%;height:100%;object-fit:cover;
+    width:100%;height:100%;object-fit:contain;
     transition:transform .6s cubic-bezier(.16,1,.3,1);
   }
   .map-stage:hover img{transform:scale(1.03);}
@@ -417,7 +417,7 @@
     z-index:5;
   }
   .modal-img{width:100%;aspect-ratio:16/10;overflow:hidden;}
-  .modal-img img{width:100%;height:100%;object-fit:cover;}
+  .map-modal-box .modal-img img{object-fit:contain;}
   .modal-body{padding:36px 40px 44px;}
   .modal-body h3{font-size:1.7rem;margin-bottom:10px;}
   .modal-body p{font-size:0.95rem;opacity:0.75;max-width:560px;}
@@ -514,7 +514,7 @@
       <div class="about-copy">
         <div class="eyebrow" style="margin-bottom:18px;">01 / ABOUT ME</div>
         <h2>Hello there,</h2>
-        <p>I'm Esmira. I've been working on Geographic Information Systems since 2023, and maps have been my favorite piece of art to explore since school time. It all started with an immense interest for maps — from science books and  chunky Soviet-era encyclopedias I used to explore.</p>
+        <p>I'm Esmira. I've been working on Geographic Information Systems since 2023, and maps have been my favorite piece of art to explore since school time. It all started with an immense interest for maps from science books and  chunky Soviet-era encyclopedias I used to explore.</p>
         <p>Professionally, working in GIS, I've grown my experience gradually across different industries. I always try to push myself to pursue and create better products that fulfill my passion. Here you can find both my professional and personal projects, with details.</p>
         <div class="skills">
           <span class="tag">QGIS</span>
@@ -738,13 +738,13 @@
       name: "Hamilton City Wastewater Management",
       blurb: "StoryMap for urban wastewater infrastructure insights.",
       desc: "A StoryMap built for wastewater management analysis, surfacing infrastructure and environmental insights for the city of Hamilton, Canada. Link: https://arcg.is/uKOKK0",
-      img: "images/Hamilton.png"
+      img: "images/Hamilton.jpg"
     },
     {
       name: "Hungary EV Stations Website",
       blurb: "Interactive public-facing map of EV charging stations.",
       desc: "Built a responsive EV charging station web map using HTML, CSS, JavaScript, and OpenLayers, integrating OpenStreetMap (OSM) data for the basemap and geographic context. Processed and visualized charging-station data with interactive map features and routing services, creating a user-friendly tool for exploring station locations and planning routes. Link: https://lnkd.in/dGHeisat",
-      img: "images/ev.png"
+      img: "images/ev.jpg"
     },
     {
       name: "Population Analysis with FME",
@@ -789,8 +789,8 @@
   const maps = [
     { name: "Fantasy Map", img: "map/GOT-map.jpg" },
     { name: "Minimalist Wall Map", img: "map/Copenhagen_map.jpg" },
-    { name: "Map Art", img: "images/Navy_blue_map.jpg" },
-    { name: "Risk Mapping", img: "images/Risk_mapping.jpg" },
+    { name: "Map Art", img: "map/Navy_blue_map.jpg" },
+    { name: "Risk Mapping", img: "map/Risk_mapping.jpg" },
     { name: "Alternative Energy", img: "map/Energy map.png" },
     { name: "Slope Analysis", img: "map/Slope Analysis.jpg" },
     { name: "Land Classification", img: "map/Qabala-classification.jpeg" },
