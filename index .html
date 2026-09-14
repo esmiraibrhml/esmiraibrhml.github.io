@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Esmira Ibrahimli — GIS Engineer &amp; Geoinformatics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="icon" href="favicon.png" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon.png">
+<style>
+:root{
+    --navy:#001f37;
+    --navy-soft:#0a3557;
+    --cream:#f7f2e9;
+    --cream-dim:#ece4d3;
+    --line:#00203866;
+    --serif:'Fraunces', Georgia, serif;
+    --sans:'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--cream);
+    color:var(--navy);
+    font-family:var(--sans);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;text-decoration:none;}
+
+  img{display:block;max-width:100%;}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important;transition-duration:0.01ms !important;}
+  }
+
+  .eyebrow{
+    font-size:0.72rem;
+    letter-spacing:0.08em;
+    color:var(--navy);
+    opacity:0.55;
+    font-weight:500;
+  }
+
+  .wrap{
+    max-width:1240px;
+    margin:0 auto;
+    padding:0 48px;
+  }
+
+  section{padding:110px 0;border-top:1px solid var(--cream-dim);}
+  section:first-of-type{border-top:none;}
+
+  h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.05;}
+
+  .italic{font-style:italic;font-weight:400;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky;top:0;z-index:40;
+    background:var(--cream);
+    border-bottom:1px solid var(--cream-dim);
+  }
+  nav.wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding-top:26px;
+    padding-bottom:26px;
+  }
+  .logo{
+    font-family:var(--serif);
+    font-size:1.05rem;
+    font-weight:600;
+    line-height:1.15;
+    letter-spacing:0.01em;
+  }
+  .navlinks{display:flex;gap:34px;}
+  .navlinks a{
+    position:relative;
+    font-size:0.82rem;
+    font-weight:500;
+    color:var(--navy);
+    opacity:0.75;
+    transition:opacity .25s ease;
+  }
+  .navlinks a::after{
+    content:"";
+    position:absolute;left:0;right:100%;bottom:-4px;
+    height:1px;background:var(--navy);
+    transition:right .3s cubic-bezier(.4,0,.2,1);
+  }
+  .navlinks a:hover{opacity:1;}
+  .navlinks a:hover::after{right:0;}
+  .nav-toggle{display:none;background:none;border:none;cursor:pointer;}
+  .nav-toggle span{
+    display:block;width:22px;height:2px;background:var(--navy);margin:5px 0;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding-top:64px;padding-bottom:0;
+    border-top:none;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:56px;
+    align-items:center;
+  }
+  @keyframes riseIn{
+    from{opacity:0;transform:translateY(14px);}
+    to{opacity:1;transform:translateY(0);}
+  }
+  .hero-label{
+    font-size:0.72rem;letter-spacing:0.08em;opacity:0.55;margin-bottom:22px;
+    animation:riseIn .7s cubic-bezier(.16,1,.3,1) .05s both;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem,4.4vw,4rem);
+    letter-spacing:-0.01em;
+    animation:riseIn .8s cubic-bezier(.16,1,.3,1) .15s both;
+  }
+  @keyframes riseInDim{
+    from{opacity:0;transform:translateY(14px);}
+    to{opacity:0.72;transform:translateY(0);}
+  }
+  .hero p.desc{
+    max-width:360px;
+    margin-top:26px;
+    font-size:0.98rem;
+    animation:riseInDim .8s cubic-bezier(.16,1,.3,1) .28s both;
+  }
+  .hero .discover-btn{animation:riseIn .8s cubic-bezier(.16,1,.3,1) .4s both;}
+  .hero-art{animation:riseIn 1s cubic-bezier(.16,1,.3,1) .2s both;}
+  .discover-btn{
+    margin-top:38px;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    border:1px solid var(--navy);
+    border-radius:999px;
+    padding:13px 26px;
+    font-size:0.82rem;
+    font-weight:600;
+    transition:background .3s cubic-bezier(.4,0,.2,1),color .3s ease,transform .3s cubic-bezier(.4,0,.2,1);
+  }
+  .discover-btn:hover{background:var(--navy);color:var(--cream);transform:translateX(2px);}
+
+  .hero-art{
+    position:relative;
+    aspect-ratio:1/1.05;
+    background:var(--cream-dim);
+    overflow:hidden;
+    border-radius:2px;
+  }
+  .hero-art svg{width:100%;height:100%;}
+  .hero-badge{
+    position:absolute;
+    left:24px;bottom:24px;
+    background:var(--navy);
+    color:var(--cream);
+    font-size:0.72rem;
+    font-weight:600;
+    letter-spacing:0.03em;
+    padding:10px 16px;
+    border-radius:3px;
+  }
+  .hero-bottom-rule{
+    margin-top:64px;
+    border-top:1px solid var(--cream-dim);
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1.2fr 0.8fr;
+    gap:64px;
+    align-items:start;
+  }
+  .about-copy h2{
+    font-size:clamp(2.1rem,3.4vw,2.9rem);
+    margin-bottom:22px;
+  }
+  .about-copy p{
+    max-width:560px;
+    font-size:1rem;
+    opacity:0.78;
+    margin-bottom:14px;
+  }
+  .about-photo{
+    width:100%;
+    aspect-ratio:1/1;
+    border-radius:50%;
+    overflow:hidden;
+    justify-self:end;
+    max-width:280px;
+    border:1px solid var(--cream-dim);
+  }
+  .about-photo img{width:100%;height:100%;object-fit:cover;}
+  .skills{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:36px;
+  }
+  .tag{
+    border:1px solid var(--navy);
+    border-radius:999px;
+    padding:8px 16px;
+    font-size:0.78rem;
+    font-weight:500;
+    opacity:0.85;
+    transition:background .25s ease,color .25s ease;
+  }
+  .tag:hover{background:var(--navy);color:var(--cream);}
+
+  /* ---------- EXPERIENCE ---------- */
+  .exp-row{
+    display:grid;
+    grid-template-columns:120px 1fr 220px;
+    gap:32px;
+    padding:34px 0;
+    border-top:1px solid var(--cream-dim);
+  }
+  .exp-row:last-child{border-bottom:1px solid var(--cream-dim);}
+  .exp-dates{font-size:0.78rem;opacity:0.55;padding-top:3px;}
+  .exp-role h3{font-size:1.2rem;margin-bottom:4px;}
+  .exp-company{font-size:0.85rem;font-style:italic;opacity:0.6;margin-bottom:12px;font-family:var(--serif);}
+  .exp-desc{font-size:0.92rem;opacity:0.78;max-width:520px;}
+  .exp-tags{display:flex;flex-wrap:wrap;gap:8px;align-content:flex-start;}
+  .exp-tags .tag{font-size:0.72rem;padding:6px 13px;}
+
+  /* ---------- PORTFOLIO ---------- */
+  .portfolio-head{
+    display:grid;
+    grid-template-columns:0.8fr 1.2fr;
+    gap:40px;
+    align-items:end;
+    margin-bottom:52px;
+  }
+  .portfolio-head h2{font-size:clamp(2.4rem,4vw,3.4rem);}
+  .portfolio-head p{font-size:0.92rem;opacity:0.65;max-width:420px;}
+  .proj-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:28px 26px;
+  }
+  .proj-card{
+    cursor:pointer;
+    border:none;background:none;text-align:left;font:inherit;color:inherit;
+    padding:0;
+  }
+  .proj-thumb{
+    aspect-ratio:4/3;
+    overflow:hidden;
+    background:var(--navy);
+    margin-bottom:14px;
+    border-radius:2px;
+  }
+  .proj-thumb img{
+    width:100%;height:100%;object-fit:cover;
+    filter:grayscale(15%) contrast(1.05);
+    transition:transform .6s cubic-bezier(.16,1,.3,1);
+  }
+  .proj-card:hover .proj-thumb img{transform:scale(1.05);}
+  .proj-card h3{
+    font-size:1.02rem;font-weight:500;margin-bottom:6px;
+    transition:opacity .2s ease;
+  }
+  .proj-card:hover h3{opacity:0.6;}
+  .proj-card p{font-size:0.82rem;opacity:0.62;line-height:1.4;}
+
+  /* ---------- MAPS ---------- */
+  .maps-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:56px;
+    align-items:center;
+  }
+  .map-carousel{
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .map-arrow{
+    background:none;border:1px solid var(--navy);
+    width:40px;height:40px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;flex-shrink:0;
+    transition:background .25s ease,color .25s ease,transform .25s ease;
+    font-size:1rem;
+  }
+  .map-arrow:hover{background:var(--navy);color:var(--cream);transform:scale(1.06);}
+  .map-arrow:active{transform:scale(0.96);}
+  .map-stage{
+    flex:1;
+    aspect-ratio:4/3.1;
+    background:var(--navy);
+    overflow:hidden;
+    position:relative;
+    border-radius:2px;
+    cursor:zoom-in;
+  }
+  .map-stage img{
+    width:100%;height:100%;object-fit:cover;
+    transition:transform .6s cubic-bezier(.16,1,.3,1);
+  }
+  .map-stage:hover img{transform:scale(1.03);}
+  .map-name{
+    text-align:center;
+    margin-top:16px;
+    font-size:0.78rem;
+    letter-spacing:0.04em;
+    opacity:0.55;
+  }
+  .maps-copy h2{font-size:clamp(2.2rem,3.6vw,3.1rem);margin-bottom:20px;}
+  .maps-copy p{font-size:0.94rem;opacity:0.72;max-width:400px;margin-bottom:26px;}
+  .maps-link{
+    font-size:0.8rem;font-weight:600;
+    border-bottom:1px solid var(--navy);
+    padding-bottom:2px;
+  }
+  .map-list{
+    display:flex;flex-wrap:wrap;gap:10px;margin-top:34px;
+  }
+  .map-list button{
+    font:inherit;background:none;border:1px solid var(--navy);
+    border-radius:999px;padding:8px 16px;font-size:0.76rem;
+    opacity:0.7;cursor:pointer;color:inherit;
+    transition:opacity .2s ease,background .2s ease,color .2s ease;
+  }
+  .map-list button.active{opacity:1;background:var(--navy);color:var(--cream);}
+
+  /* ---------- EDUCATION + CONTACT ---------- */
+  .edu-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:40px;
+    padding-bottom:80px;
+  }
+  .edu-col .eyebrow{margin-bottom:22px;}
+  .edu-item{margin-bottom:26px;}
+  .edu-item h3{font-size:1.05rem;font-weight:500;margin-bottom:4px;}
+  .edu-item p{font-size:0.82rem;opacity:0.62;}
+  .lang-item,.cert-item{
+    display:flex;justify-content:space-between;
+    font-size:0.85rem;padding:9px 0;
+    border-bottom:1px solid var(--cream-dim);
+  }
+  .lang-item span:last-child,.cert-item span:last-child{opacity:0.55;text-align:right;}
+
+  .contact-block{
+    border-top:1px solid var(--cream-dim);
+    padding-top:64px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    align-items:end;
+  }
+  .contact-block h2{font-size:clamp(2.3rem,4vw,3.4rem);}
+  .contact-links{display:flex;flex-direction:column;gap:14px;align-items:flex-end;text-align:right;}
+  .contact-links a{font-size:0.92rem;font-weight:500;}
+  .contact-links a:hover{opacity:0.6;}
+  .contact-loc{font-size:0.82rem;opacity:0.55;}
+
+  footer{
+    border-top:1px solid var(--cream-dim);
+    padding:26px 0;
+    display:flex;
+    justify-content:space-between;
+    font-size:0.75rem;
+    opacity:0.55;
+  }
+  footer a:hover{opacity:0.7;}
+
+  /* ---------- MODAL ---------- */
+  .modal-overlay{
+    position:fixed;inset:0;
+    background:rgba(0,31,55,0.92);
+    display:flex;
+    align-items:center;justify-content:center;
+    z-index:100;
+    padding:40px;
+    opacity:0;
+    visibility:hidden;
+    transition:opacity .3s ease,visibility 0s linear .3s;
+  }
+  .modal-overlay.open{
+    opacity:1;visibility:visible;
+    transition:opacity .3s ease,visibility 0s linear 0s;
+  }
+  .modal-box{
+    background:var(--cream);
+    max-width:860px;width:100%;
+    max-height:88vh;
+    overflow:auto;
+    position:relative;
+    border-radius:3px;
+    transform:translateY(18px) scale(.98);
+    transition:transform .35s cubic-bezier(.16,1,.3,1);
+  }
+  .modal-overlay.open .modal-box{transform:translateY(0) scale(1);}
+  .modal-close{
+    position:absolute;top:18px;right:18px;
+    width:38px;height:38px;
+    border-radius:50%;
+    border:1px solid var(--navy);
+    background:var(--cream);
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;font-size:1.1rem;
+    z-index:5;
+  }
+  .modal-img{width:100%;aspect-ratio:16/10;overflow:hidden;}
+  .modal-img img{width:100%;height:100%;object-fit:cover;}
+  .modal-body{padding:36px 40px 44px;}
+  .modal-body h3{font-size:1.7rem;margin-bottom:10px;}
+  .modal-body p{font-size:0.95rem;opacity:0.75;max-width:560px;}
+
+  .map-modal-box{
+    max-width:1100px;
+    background:var(--navy);
+  }
+  .map-modal-box .modal-img{aspect-ratio:16/9;}
+  .map-modal-box .modal-close{background:var(--navy);color:var(--cream);border-color:var(--cream);}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:920px){
+    .wrap{padding:0 24px;}
+    section{padding:70px 0;}
+    .navlinks{
+      position:fixed;top:74px;left:0;right:0;
+      background:var(--cream);
+      flex-direction:column;gap:0;
+      padding:10px 24px 20px;
+      border-bottom:1px solid var(--cream-dim);
+      display:none;
+    }
+    .navlinks.open{display:flex;}
+    .navlinks a{padding:12px 0;border-bottom:1px solid var(--cream-dim);opacity:0.85;}
+    .nav-toggle{display:block;}
+    .hero-grid,.about-grid,.maps-grid,.portfolio-head,.contact-block{grid-template-columns:1fr;}
+    .about-photo{justify-self:start;margin-top:24px;}
+    .exp-row{grid-template-columns:1fr;gap:10px;}
+    .proj-grid{grid-template-columns:repeat(2,1fr);}
+    .edu-grid{grid-template-columns:1fr;gap:48px;}
+    .contact-links{align-items:flex-start;text-align:left;margin-top:18px;}
+  }
+  @media (max-width:560px){
+    .proj-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="logo">ESMIRA<br>IBRAHIMLI</div>
+    <div class="navlinks" id="navlinks">
+      <a href="#about">About Me</a>
+      <a href="#experience">Experience</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#maps">Maps</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact Me</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-label">GIS ENGINEER · GEOINFORMATICS · SPATIAL DATA</div>
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow" style="margin-bottom:14px;">SELECTED WORK / 2023–2026</div>
+        <h1>Digital maps,<br><span class="italic">spatial intelligence</span></h1>
+        <p class="desc">I turn complex geographic data into clear, useful, and technically reliable products.</p>
+        <a href="#about" class="discover-btn">Discover →</a>
+      </div>
+      <div class="hero-art">
+        <svg viewBox="0 0 600 630" preserveAspectRatio="xMidYMid slice">
+          <rect width="600" height="630" fill="#ece4d3"/>
+          <g fill="none" stroke="#001f37" stroke-width="1.4" opacity="0.85">
+            <path d="M300,60 C400,55 480,120 505,205 C528,282 500,375 435,440 C375,500 270,525 190,485 C115,448 65,370 68,280 C71,192 130,110 215,78 C243,67 271,61 300,60 Z"/>
+            <path d="M300,110 C378,106 440,158 460,225 C480,288 458,362 405,412 C355,460 270,480 205,447 C144,417 106,355 108,283 C110,213 156,148 224,120 C248,110 274,110 300,110 Z"/>
+            <path d="M300,160 C358,157 405,196 420,248 C435,298 418,352 378,390 C340,426 275,442 224,417 C176,393 148,346 150,292 C152,238 187,190 238,168 C258,159 279,159 300,160 Z"/>
+            <path d="M298,208 C338,206 372,234 384,272 C396,308 383,347 354,373 C327,398 280,410 244,391 C210,373 190,338 192,300 C194,262 219,227 256,211 C270,205 284,207 298,208 Z"/>
+            <path d="M296,254 C322,253 344,271 352,296 C360,320 351,346 331,363 C312,379 281,387 258,375 C236,363 223,340 224,315 C225,290 241,267 264,256 C274,251 286,254 296,254 Z"/>
+            <path d="M294,290 C310,290 323,301 328,317 C333,332 327,349 314,359 C302,369 282,374 268,366 C255,358 247,344 248,328 C249,312 259,297 274,291 C280,289 288,290 294,290 Z"/>
+            <path d="M55,470 C110,455 175,465 210,505 C240,540 235,580 195,600 C155,618 90,610 55,580 C22,552 15,510 30,490 C37,481 45,474 55,470 Z" opacity="0.55"/>
+            <path d="M420,60 C465,50 515,65 535,100 C553,132 540,168 505,182 C472,196 430,186 410,158 C392,132 396,95 410,78 C413,74 417,66 420,60 Z" opacity="0.5"/>
+          </g>
+        </svg>
+        <div class="hero-badge">GIS Engineer</div>
+      </div>
+    </div>
+    <div class="hero-bottom-rule"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-copy">
+        <div class="eyebrow" style="margin-bottom:18px;">01 / ABOUT ME</div>
+        <h2>Hello there,</h2>
+        <p>I'm Esmira. I've been working on Geographic Information Systems since 2023, and maps have been my favorite piece of art to explore since school time. It all started with an immense interest in maps — from science books to the chunky Soviet-era encyclopedias I used to explore.</p>
+        <p>Professionally, working in GIS, I've grown my experience gradually across different industries. I always try to push myself to pursue and create better products that fulfill my passion. Here you can find both my professional and personal projects, with details.</p>
+        <div class="skills">
+          <span class="tag">QGIS</span>
+          <span class="tag">ArcGIS Pro</span>
+          <span class="tag">Python</span>
+          <span class="tag">LiDAR</span>
+          <span class="tag">PostGIS / SQL</span>
+          <span class="tag">CloudCompare</span>
+          <span class="tag">Remote Sensing</span>
+          <span class="tag">Web GIS</span>
+          <span class="tag">GDAL</span>
+          <span class="tag">FME</span>
+          <span class="tag">HD Mapping</span>
+          <span class="tag">Map Design</span>
+          <span class="tag">Satellite Imagery</span>
+          <span class="tag">ArcGIS Online</span>
+          <span class="tag">MicroStation</span>
+          <span class="tag">Cartography</span>
+          <span class="tag">ESRI Products</span>
+        </div>
+      </div>
+      <div class="about-photo">
+        <img src="images/profile_picture.jpg" alt="Esmira Ibrahimli">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <div class="eyebrow" style="margin-bottom:30px;">02 / EXPERIENCE</div>
+
+    <div class="exp-row">
+      <div class="exp-dates">NOV 2025 — JUN 2026</div>
+      <div class="exp-role">
+        <h3>GIS Engineer</h3>
+        <div class="exp-company">RailGEO — Budapest, Hungary</div>
+        <p class="exp-desc">Processed LiDAR and point-cloud data for HD mapping and autonomous-vehicle applications. Inspected, cleaned, validated, and corrected spatial data using CloudCompare and QGIS, and created Python/QGIS scripts for repetitive preparation tasks.</p>
+      </div>
+      <div class="exp-tags">
+        <span class="tag">QGIS</span><span class="tag">Python</span><span class="tag">LiDAR</span><span class="tag">CloudCompare</span><span class="tag">HD Mapping</span>
+      </div>
+    </div>
+
+    <div class="exp-row">
+      <div class="exp-dates">JUL 2024 — NOV 2025</div>
+      <div class="exp-role">
+        <h3>GIS Specialist</h3>
+        <div class="exp-company">Associate Technologies Inc. — Remote, Canada</div>
+        <p class="exp-desc">Updated and validated attribute data and geometry, performed geometry and attribute QA/QC, queried PostgreSQL/PostGIS data, and prepared tourism, address, and postal-code datasets.</p>
+      </div>
+      <div class="exp-tags">
+        <span class="tag">QGIS</span><span class="tag">ArcGIS Pro</span><span class="tag">PostGIS / SQL</span><span class="tag">ArcGIS Experience Builder</span>
+      </div>
+    </div>
+
+    <div class="exp-row">
+      <div class="exp-dates">SEP 2023 — JUL 2024</div>
+      <div class="exp-role">
+        <h3>GIS Specialist</h3>
+        <div class="exp-company">TomTom Consortium — Remote, Canada</div>
+        <p class="exp-desc">Conducted spatial analysis, data integration, collection , and validation for infrastructure and mapping projects in Finland.</p>
+      </div>
+      <div class="exp-tags">
+        <span class="tag">ArcGIS Pro</span><span class="tag">FME</span>
+      </div>
+    </div>
+
+    <div class="exp-row">
+      <div class="exp-dates">JUL 2023 — SEP 2023</div>
+      <div class="exp-role">
+        <h3>Junior GIS Specialist</h3>
+        <div class="exp-company">Digital Umbrella — Baku, Azerbaijan</div>
+        <p class="exp-desc">Processed radar and optical raster data, including SAR imagery with ESA SNAP, and produced LULC, DEM, urban-footprint, and report-ready map outputs.</p>
+      </div>
+      <div class="exp-tags">
+        <span class="tag">QGIS</span><span class="tag">Remote Sensing</span><span class="tag">ESA SNAP</span><span class="tag">RADAR</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="wrap">
+    <div class="portfolio-head">
+      <div>
+        <div class="eyebrow" style="margin-bottom:16px;">03 / PORTFOLIO</div>
+        <h2>Portfolio<br><span class="italic">projects</span></h2>
+      </div>
+      <p>Selected professional and personal work across different industies. Click any project to see the full details.</p>
+    </div>
+
+    <div class="proj-grid" id="projGrid">
+      <!-- filled by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- MAPS -->
+<section id="maps">
+  <div class="wrap">
+    <div class="maps-grid">
+      <div>
+        <div class="map-carousel">
+          <button class="map-arrow" id="mapPrev" aria-label="Previous map">&#8249;</button>
+          <div class="map-stage" id="mapStage">
+            <img id="mapStageImg" src="" alt="">
+          </div>
+          <button class="map-arrow" id="mapNext" aria-label="Next map">&#8250;</button>
+        </div>
+        <div class="map-name" id="mapName"></div>
+      </div>
+      <div class="maps-copy">
+        <div class="eyebrow" style="margin-bottom:16px;">04 / MAPS</div>
+        <h2>Cartography<br><span class="italic"> makes analysis visible.</span></h2>
+        <p>A collection of thematic maps, web maps, spatial analyses, and data-driven visual stories. This area is your visual archive — one project per card, with a short explanation and a link to the live map.</p>
+        <div class="map-list" id="mapList"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="wrap">
+    <div class="eyebrow" style="margin-bottom:36px;">05 / EDUCATION</div>
+    <div class="edu-grid">
+      <div class="edu-col">
+        <div class="edu-item">
+          <h3>MSc in Geoinformatics</h3>
+          <p>Eötvös Loránd University (ELTE)<br>Budapest, Hungary · 2024 – 2026</p>
+        </div>
+        <div class="edu-item">
+          <h3>BSc in Geography</h3>
+          <p>Baku State University<br>Baku, Azerbaijan · 2019 – 2023</p>
+        </div>
+      </div>
+      <div class="edu-col">
+        <div class="eyebrow" style="margin-bottom:16px;">LANGUAGES</div>
+        <div class="lang-item"><span>Azerbaijani</span><span>Native</span></div>
+        <div class="lang-item"><span>English</span><span>C1</span></div>
+        <div class="lang-item"><span>Turkish</span><span>C1</span></div>
+        <div class="lang-item"><span>Hungarian</span><span>A2</span></div>
+        <div class="lang-item"><span>Russian</span><span>A2</span></div>
+      </div>
+      <div class="edu-col">
+        <div class="eyebrow" style="margin-bottom:16px;">CERTIFICATIONS</div>
+        <div class="cert-item"><span>Drone Flying License</span><span>Austro Control</span></div>
+        <div class="cert-item"><span>Spatial Data Science &amp; Applications</span><span>Yonsei University</span></div>
+        <div class="cert-item"><span>GIS for Climate Action</span><span>Esri</span></div>
+        <div class="cert-item"><span>3D modelling and printing</span><span>STEAM Azerbaijan</span></div>
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="contact-block" id="contact">
+      <div>
+        <div class="eyebrow" style="margin-bottom:16px;">06 / CONTACT ME</div>
+        <h2>Let's talk about data,<br>maps, and ideas —<br><span class="italic"></span></h2>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:esmiraibrahimli919@gmail.com">esmiraibrahimli919@gmail.com</a>
+        <a href="https://www.linkedin.com/in/esmira-ibrahimli-79357a216/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <div class="contact-loc">Budapest, Hungary</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="display:flex;justify-content:space-between;width:100%;">
+    <span>© Esmira Ibrahimli</span>
+    <span>GIS Engineer / Geoinformatics, 2026</span>
+    <a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Back to top ↑</a>
+  </div>
+</footer>
+
+<!-- PROJECT MODAL -->
+<div class="modal-overlay" id="projModal">
+  <div class="modal-box">
+    <button class="modal-close" id="projModalClose">&times;</button>
+    <div class="modal-img"><img id="projModalImg" src="" alt=""></div>
+    <div class="modal-body">
+      <h3 id="projModalTitle"></h3>
+      <p id="projModalDesc"></p>
+    </div>
+  </div>
+</div>
+
+<!-- MAP MODAL -->
+<div class="modal-overlay" id="mapModal">
+  <div class="modal-box map-modal-box">
+    <button class="modal-close" id="mapModalClose">&times;</button>
+    <div class="modal-img"><img id="mapModalImg" src="" alt=""></div>
+  </div>
+</div>
+
+<script>
+  // ---- Nav toggle (mobile) ----
+  const navToggle = document.getElementById('navToggle');
+  const navlinks = document.getElementById('navlinks');
+  navToggle.addEventListener('click', () => navlinks.classList.toggle('open'));
+  navlinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navlinks.classList.remove('open')));
+
+  // ---- Portfolio projects data (edit / replace freely) ----
+  const projects = [
+    {
+      name: "Munich Urban Canyon & LiDAR Analysis",
+      blurb: "LiDAR-derived indicators, road-network analysis.",
+      desc: "LiDAR-derived indicators and road-network analysis for Munich's urban canyon effects, built out with ArcGIS Experience Builder and delivered as an interactive dashboard and StoryMap.  Link : Dashboard: https://www.arcgis.com/apps/dashboards/786cfdfbc90d44e3887c152a505eb72d  ,StoryMap: https://arcg.is/145L9W2",
+      img: "images/munich_dasboard.jpg"
+    },
+    {
+      name: "ML-Based Object Detection in Satellite Imagery",
+      blurb: "MSc thesis workflow for detecting aircraft and vehicles.",
+      desc: "An MSc thesis workflow for detecting aircraft, cars, and service vehicles in satellite imagery, combining remote sensing preprocessing with an object-detection pipeline.",
+      img: "images/BUD thesis.png"
+    },
+    {
+      name: "Hamilton City Wastewater Management",
+      blurb: "StoryMap for urban wastewater infrastructure insights.",
+      desc: "A StoryMap built for wastewater management analysis, surfacing infrastructure and environmental insights for the city of Hamilton, Canada. Link: https://arcg.is/uKOKK0",
+      img: "images/Hamilton water management.png"
+    },
+    {
+      name: "Hungary EV Stations Website",
+      blurb: "Interactive public-facing map of EV charging stations.",
+      desc: "Built a responsive EV charging station web map using HTML, CSS, JavaScript, and OpenLayers, integrating OpenStreetMap (OSM) data for the basemap and geographic context. Processed and visualized charging-station data with interactive map features and routing services, creating a user-friendly tool for exploring station locations and planning routes. Link: https://lnkd.in/dGHeisat",
+      img: "images/ev.png"
+    },
+    {
+      name: "Population Analysis with FME",
+      blurb: "Built reliable ETL workflow for statistical and spatial analysis.",
+      desc: "Designed a spatial ETL workflow to extract, transform, validate, and analyze population datasets for Hungary and Italy, combining demographic and geographic information. Used FME to automate data transformation, spatial processing, and quality checks, producing structured datasets for further GIS analysis and visualization.",
+      img: "images/FME.png"
+    },
+    {
+      name: "HD Map Creation & LiDAR-Based Road Mapping",
+      blurb: "HD map data from LiDAR and GPS data focusing on lane features and surrounding objects.",
+      desc: "Processed and classified vehicle sensor data using CloudCompare, QGIS, and Python, including point-cloud cleaning, visualization, object labeling, and quality control. Built and refined HD map features such as lanes, road boundaries, parking areas, static/dynamic objects, and ground-truth data to support autonomous driving and high-definition mapping workflows.",
+      img: "images/LIDAR.png"
+    }
+  ];
+
+  const projGrid = document.getElementById('projGrid');
+  projects.forEach((p, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'proj-card';
+    btn.innerHTML = `
+      <div class="proj-thumb"><img src="${p.img}" alt="${p.name}"></div>
+      <h3>${p.name}</h3>
+      <p>${p.blurb}</p>
+    `;
+    btn.addEventListener('click', () => openProjModal(i));
+    projGrid.appendChild(btn);
+  });
+
+  const projModal = document.getElementById('projModal');
+  function openProjModal(i){
+    const p = projects[i];
+    document.getElementById('projModalImg').src = p.img;
+    document.getElementById('projModalImg').alt = p.name;
+    document.getElementById('projModalTitle').textContent = p.name;
+    document.getElementById('projModalDesc').textContent = p.desc;
+    projModal.classList.add('open');
+  }
+  document.getElementById('projModalClose').addEventListener('click', () => projModal.classList.remove('open'));
+  projModal.addEventListener('click', e => { if(e.target === projModal) projModal.classList.remove('open'); });
+
+  // ---- Maps catalog (edit / replace freely) ----
+  const maps = [
+    { name: "ML-Based Object Detection in Satellite Imagery", img: "images/BUD thesis.png" },
+    { name: "Hamilton City Wastewater Management", img: "images/Hamilton water management.png" },
+    { name: "Hungary EV Stations Website", img: "images/ev.png" },
+    { name: "HD Map Creation & LiDAR-Based Road Mapping", img: "images/LIDAR.png" },
+    { name: "Munich Urban Canyon & LiDAR Analysis", img: "images/munich_dasboard.jpg" }
+  ];
+  let mapIndex = 0;
+  const mapStageImg = document.getElementById('mapStageImg');
+  const mapNameEl = document.getElementById('mapName');
+  const mapListEl = document.getElementById('mapList');
+
+  function renderMaps(){
+    mapStageImg.src = maps[mapIndex].img;
+    mapStageImg.alt = maps[mapIndex].name;
+    mapNameEl.textContent = maps[mapIndex].name;
+    [...mapListEl.children].forEach((b, i) => b.classList.toggle('active', i === mapIndex));
+  }
+  maps.forEach((m, i) => {
+    const b = document.createElement('button');
+    b.textContent = m.name;
+    b.addEventListener('click', () => { mapIndex = i; renderMaps(); });
+    mapListEl.appendChild(b);
+  });
+  document.getElementById('mapPrev').addEventListener('click', () => {
+    mapIndex = (mapIndex - 1 + maps.length) % maps.length; renderMaps();
+  });
+  document.getElementById('mapNext').addEventListener('click', () => {
+    mapIndex = (mapIndex + 1) % maps.length; renderMaps();
+  });
+  renderMaps();
+
+  const mapModal = document.getElementById('mapModal');
+  document.getElementById('mapStage').addEventListener('click', () => {
+    document.getElementById('mapModalImg').src = maps[mapIndex].img;
+    document.getElementById('mapModalImg').alt = maps[mapIndex].name;
+    mapModal.classList.add('open');
+  });
+  document.getElementById('mapModalClose').addEventListener('click', () => mapModal.classList.remove('open'));
+  mapModal.addEventListener('click', e => { if(e.target === mapModal) mapModal.classList.remove('open'); });
+
+  // Escape key closes any open modal
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape'){
+      projModal.classList.remove('open');
+      mapModal.classList.remove('open');
+    }
+  });
+</script>
+
+</body>
+</html>
