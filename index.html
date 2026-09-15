@@ -769,7 +769,14 @@
       blurb: "HD map data from LiDAR and GPS data focusing on lane features and surrounding objects.",
       desc: "Processed and classified vehicle sensor data using CloudCompare, QGIS, and Python, including point-cloud cleaning, visualization, object labeling, and quality control. Built and refined HD map features such as lanes, road boundaries, parking areas, static/dynamic objects, and ground-truth data to support autonomous driving and high-definition mapping workflows.",
       img: "images/LIDAR.png"
+    },
+    {
+      name: "Buildability Site Analyzer (QGIS Plugin)",
+      blurb: "Combines slope, roads, water, land use, and buildings to flag buildable land.",
+      desc: "A QGIS plugin that combines a slope raster, road network, waterways, land use / natural areas, and existing buildings to flag buildable land within a selected zone. Configurable thresholds — max slope, road-access buffer, waterway buffer, building buffer, and minimum parcel area — tune the analysis to a project's site-selection criteria.",
+      img: "images/Site.jpg"
     }
+    
   ];
 
   const projGrid = document.getElementById('projGrid');
