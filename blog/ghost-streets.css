@@ -1,0 +1,28 @@
+/* Ghost Streets article-specific styling.
+   The shared colors, fonts, navigation, and base article layout live in blog.css.
+   Edit this file to customize only the Ghost Streets article. */
+
+/* Optional: add a subtle background to illustrative figures */
+.article-main .prose figure img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Make wider graphs available when needed: add class="wide-figure" to <figure>. */
+.article-main .prose figure.wide-figure {
+  width: min(100%, 1000px);
+  max-width: 1000px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Caption for schematics, screenshots, or graphs */
+.article-main .prose figcaption {
+  line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+  .article-main .prose figure.wide-figure {
+    width: 100%;
+  }
+}
