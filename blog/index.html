@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — Esmira Ibrahimli</title>
+<meta name="description" content="GIS, LiDAR and geospatial technical writing by Esmira Ibrahimli.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="../favicon.png">
+<link rel="stylesheet" href="blog.css">
+</head>
+<body>
+<header class="site-header"><nav class="wrap navigation" aria-label="Main navigation">
+<a class="logo" href="../index.html">ESMIRA<br>IBRAHIMLI</a>
+<button class="nav-toggle" type="button" id="navToggle" aria-expanded="false" aria-controls="navlinks" aria-label="Toggle navigation">☰</button>
+<div class="navlinks" id="navlinks">
+<a href="../index.html#about">About Me</a><a href="../index.html#experience">Experience</a><a href="../index.html#portfolio">Portfolio</a><a href="../index.html#maps">Maps</a><a href="index.html" aria-current="page">Blog</a><a href="../index.html#education">Education</a><a href="../index.html#contact">Contact Me</a>
+</div></nav></header>
+<main class="wrap blog-main">
+<p class="eyebrow">FIELD NOTES / TECHNICAL WRITING</p>
+<h1>Ideas from the <em>point cloud.</em></h1>
+<p class="lead">Short technical notes on LiDAR, mapping, geospatial data, and the details that make spatial analysis interesting.</p>
+<div class="section-label">01 / ARTICLES</div>
+<!-- ADD FUTURE BLOG LINKS BY DUPLICATING AN <article class="article-card"> BLOCK BELOW -->
+<article class="article-card"><a href="ghost-streets.html" class="article-link">
+<div class="article-meta"><span>LiDAR · Point-cloud artifacts</span><span>October 2026</span></div>
+<h2>Ghost Streets: What Reflections Do to Point Clouds <span aria-hidden="true">↗</span></h2>
+<p>When glass and other reflective surfaces confuse LiDAR, familiar streets can appear where no street actually exists. A short look at reflection artifacts and how to recognize them.</p>
+<span class="read-more">Read the article →</span>
+</a></article>
+<!-- ADD ANOTHER ARTICLE BELOW THIS COMMENT -->
+</main>
+<footer class="wrap footer"><span>© Esmira Ibrahimli</span><a href="../index.html">Back to portfolio ↗</a></footer>
+<script>const t=document.getElementById('navToggle'),n=document.getElementById('navlinks');t.addEventListener('click',()=>{let open=n.classList.toggle('open');t.setAttribute('aria-expanded',String(open));});n.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{n.classList.remove('open');t.setAttribute('aria-expanded','false')}));</script>
+</body></html>
