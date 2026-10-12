@@ -1,60 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ghost Streets: What Reflections Do to Point Clouds — Esmira Ibrahimli</title>
-<meta name="description" content="GIS, LiDAR and geospatial technical writing by Esmira Ibrahimli.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="icon" href="../favicon.png">
-<link rel="stylesheet" href="blog.css">
-</head>
-<body>
-<header class="site-header"><nav class="wrap navigation" aria-label="Main navigation">
-<a class="logo" href="../index.html">ESMIRA<br>IBRAHIMLI</a>
-<button class="nav-toggle" type="button" id="navToggle" aria-expanded="false" aria-controls="navlinks" aria-label="Toggle navigation">☰</button>
-<div class="navlinks" id="navlinks">
-<a href="../index.html#about">About Me</a><a href="../index.html#experience">Experience</a><a href="../index.html#portfolio">Portfolio</a><a href="../index.html#maps">Maps</a><a href="index.html" aria-current="page">Blog</a><a href="../index.html#education">Education</a><a href="../index.html#contact">Contact Me</a>
-</div></nav></header>
-<main class="wrap article-main">
-<a class="back" href="index.html">← All Blogs</a>
-<p class="eyebrow">LIDAR / POINT-CLOUD ARTIFACTS</p>
-<h1>Ghost Streets: <em>A LiDAR Mirror Illusions</em></h1>
-<div class="byline">By Esmira Ibrahimli · October 2026 · Technical note</div>
-
-
-<section class="prose">
-<p>A couple month ago during a routine day of mine I was reviewing a vehicle-mounted LiDAR point cloud, I noticed there is something wierdly odd. In point cloud inside a glass-fronted office building in central street of Tokyo what looked like a second street, complete with road surface and surrounding geometry. But in relaty the street-level imagery showed no road or parking area inside that building. Also lets keep in mind that it was my first time seeing someting like this in LiDAR point cloud.  I was working on HD map production and point-cloud extraction for autonomous driving, so artifacts like this matter to me.
-
-After checking the imagery and examining the cloud from several angles, I realized the "inner street" was a mirror image of the real street in front of the building. Can LiDAR reflect its own light beams like this and creat reflection on the other side?</p>
-
-
-<h2>What is actually happening physically</h2>
-<p>A LiDAR sensor measures distance from the travel time of a laser pulse and assumes the pulse traveled in a straight line. A large glass facade can break that assumption. When a pulse hits the glass at an oblique angle, part of it reflects specularly, like light off a mirror, instead of passing through or scattering. The reflected pulse hits an object in front of the building (the road, a vehicle, pole, tree or a curb) and returns to the sensor along the same path.
-
-The sensor only knows the total travel time. It places the point along the original beam direction, at the full distance the pulse traveled, so the point ends up *behind* the glass. The result is a virtual copy of the street, mirrored across the plane of the facade. This effect is commonly called multipath reflection, or ghosting.
-
-Street canyons are especially prone to it. Flat, highly reflective glass surfaces and many oblique beam angles all raise the chances of mirrored returns.</p>
-
-<figure>
-  <img
-    src="image.png"
-    alt="LiDAR ghost street"
-    loading="lazy"
-  >
-  <figcaption>
-    Figure 1. Reflection artifact observed
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Ghost Streets: What Reflections Do to Point Clouds — Esmira Ibrahimli
+  </title>
+  <meta content="GIS, LiDAR and geospatial technical writing by Esmira Ibrahimli." name="description"/>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+  <link href="../favicon.png" rel="icon"/>
+  <link href="blog.css" rel="stylesheet"/>
+  <link href="ghost-streets.css" rel="stylesheet"/>
+ </head>
+ <body>
+  <header class="site-header">
+   <nav aria-label="Main navigation" class="wrap navigation">
+    <a class="logo" href="../index.html">
+     ESMIRA
+     <br/>
+     IBRAHIMLI
+    </a>
+    <button aria-controls="navlinks" aria-expanded="false" aria-label="Toggle navigation" class="nav-toggle" id="navToggle" type="button">
+     ☰
+    </button>
+    <div class="navlinks" id="navlinks">
+     <a href="../index.html#about">
+      About Me
+     </a>
+     <a href="../index.html#experience">
+      Experience
+     </a>
+     <a href="../index.html#portfolio">
+      Portfolio
+     </a>
+     <a href="../index.html#maps">
+      Maps
+     </a>
+     <a aria-current="page" href="index.html">
+      Blog
+     </a>
+     <a href="../index.html#education">
+      Education
+     </a>
+     <a href="../index.html#contact">
+      Contact Me
+     </a>
+    </div>
+   </nav>
+  </header>
+  <main class="wrap article-main">
+   <a class="back" href="index.html">
+    ← All Blogs
+   </a>
+   <h1>
+    Ghost Streets:
+    <em>
+     A LiDAR Mirror Illusion
+    </em>
+   </h1>
+   <div class="byline">
+    By Esmira Ibrahimli · October 2026 · Technical note
+   </div>
+   <section class="prose">
+    <p>
+     A couple month ago during a routine day of mine I was reviewing a vehicle-mounted LiDAR point cloud, I noticed there is something wierdly odd. In point cloud inside a glass-fronted office building in central street of Tokyo what looked like a second street, complete with road surface and surrounding geometry. But in relaty the street-level imagery showed no road or parking area inside that building. Also lets keep in mind that it was my first time seeing someting like this in LiDAR point cloud.  I was working on HD map production and point-cloud extraction for autonomous driving, so artifacts like this matter to me.
+    </p>
+    <p>
+     After checking the imagery and examining the cloud from several angles, I realized the "inner street" was a mirror image of the real street in front of the building. Can LiDAR reflect its own light beams like this and creat reflection on the other side?
+    </p>
+    <h2>
+     What is actually happening physically
+    </h2>
+    <p>
+     A LiDAR sensor measures distance from the travel time of a laser pulse and assumes the pulse traveled in a straight line. A large glass facade can break that assumption. When a pulse hits the glass at an oblique angle, part of it reflects specularly, like light off a mirror, instead of passing through or scattering. The reflected pulse hits an object in front of the building (the road, a vehicle, pole, tree or a curb) and returns to the sensor along the same path.
+    </p>
+    <p>
+     The sensor only knows the total travel time. It places the point along the original beam direction, at the full distance the pulse traveled, so the point ends up
+     <em>
+      behind
+     </em>
+     the glass. The result is a virtual copy of the street, mirrored across the plane of the facade. This effect is commonly called multipath reflection, or ghosting.
+    </p>
+    <p>
+     Street canyons are especially prone to it. Flat, highly reflective glass surfaces and many oblique beam angles all raise the chances of mirrored returns.
+    </p>
+    <figure>
+     <img alt="LiDAR ghost street" loading="lazy" src="image.png"/>
+     <figcaption>
+      Figure 1. Reflection artifact observed
     in a LiDAR point cloud.
-  </figcaption>
-</figure>
-
-
-<h2>Why it matters in automotive</h2>
-<p>It may look like a small, harmless artifact, but ghost geometry can pass unnoticed into downstream processing. If it's not removed, it can contaminate feature extraction and end up in HD map layers as nonexistent roads, lane markings, or obstacles. Autonomous driving systems rely on these maps being accurate, so catching this kind of error is part of quality control. Otherwise an error like this would be a meme material in internet for neo-luddite people. (a.k.a Safe Street Rebel group).</p>
-
-</section>
-<div class="end-note">Thanks for reading. <a href="index.html">Explore more field notes →</a></div>
-</main>
-<footer class="wrap footer"><span>© Esmira Ibrahimli</span><a href="../index.html">Back to portfolio ↗</a></footer>
-<script>const t=document.getElementById('navToggle'),n=document.getElementById('navlinks');t.addEventListener('click',()=>{let open=n.classList.toggle('open');t.setAttribute('aria-expanded',String(open));});n.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{n.classList.remove('open');t.setAttribute('aria-expanded','false')}));</script>
-</body></html>
+     </figcaption>
+    </figure>
+    <h2>
+     Why it matters in automotive
+    </h2>
+    <p>
+     It may look like a small, harmless artifact, but ghost geometry can pass unnoticed into downstream processing. If it's not removed, it can contaminate feature extraction and end up in HD map layers as nonexistent roads, lane markings, or obstacles. Autonomous driving systems rely on these maps being accurate, so catching this kind of error is part of quality control. Otherwise an error like this would be a meme material in internet for neo-luddite people. (a.k.a Safe Street Rebel group).
+    </p>
+   </section>
+   <div class="end-note">
+    Thanks for reading.
+    <a href="index.html">
+     Explore more blogs →
+    </a>
+   </div>
+  </main>
+  <footer class="wrap footer">
+   <span>
+    © Esmira Ibrahimli
+   </span>
+   <a href="../index.html">
+    Back ↗
+   </a>
+  </footer>
+  <script>
+   const t=document.getElementById('navToggle'),n=document.getElementById('navlinks');t.addEventListener('click',()=>{let open=n.classList.toggle('open');t.setAttribute('aria-expanded',String(open));});n.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{n.classList.remove('open');t.setAttribute('aria-expanded','false')}));
+  </script>
+ </body>
+</html>
