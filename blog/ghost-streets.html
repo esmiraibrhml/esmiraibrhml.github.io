@@ -17,59 +17,45 @@
 <a href="../index.html#about">About Me</a><a href="../index.html#experience">Experience</a><a href="../index.html#portfolio">Portfolio</a><a href="../index.html#maps">Maps</a><a href="index.html" aria-current="page">Blog</a><a href="../index.html#education">Education</a><a href="../index.html#contact">Contact Me</a>
 </div></nav></header>
 <main class="wrap article-main">
-<a class="back" href="index.html">← All articles</a>
+<a class="back" href="index.html">← All Blogs</a>
 <p class="eyebrow">LIDAR / POINT-CLOUD ARTIFACTS</p>
-<h1>Ghost Streets: <em>What Reflections Do to Point Clouds</em></h1>
+<h1>Ghost Streets: <em>A LiDAR Mirror Illusions</em></h1>
 <p class="article-lead">A point cloud may show a second street where there should only be a building. Here is why reflective surfaces can create misleading geometry.</p>
 <div class="byline">By Esmira Ibrahimli · October 2026 · Technical note</div>
 
 <!-- ARTICLE EDITING START: replace the paragraphs below with your own writing. -->
 <section class="prose">
-<h2>The street that isn't there</h2>
-<p>While inspecting mobile LiDAR data, you may notice unexpected returns behind a smooth building facade: a duplicate vehicle, road markings, or even a street-like pattern. These are sometimes called <strong>ghost points</strong> or reflection artifacts. Although their coordinates look plausible, they do not represent physical objects at those positions.</p>
-<p>Glass is especially interesting because it can transmit, reflect, and redirect laser energy. Some LiDAR returns can therefore be assigned a misleading location when the processing assumes that the measured light traveled directly to a surface and back.</p>
+<h2>Ghost Streets: A LiDAR Mirror Illusion</h2>
+<p>A couple month ago during a routine day of mine I was reviewing a vehicle-mounted LiDAR point cloud, I noticed there is something wierdly odd. In point cloud inside a glass-fronted office building in central street of Tokyo what looked like a second street, complete with road surface and surrounding geometry. But in relaty the street-level imagery showed no road or parking area inside that building. Also lets keep in mind that it was my first time seeing someting like this in LiDAR point cloud.  I was working on HD map production and point-cloud extraction for autonomous driving, so artifacts like this matter to me.
 
-<!-- IMAGE SLOT 1: Save a JPG as blog/images/ghost-street-overview.jpg, then remove the surrounding comment markers below. -->
-<!--
-<figure>
-  <img src="images/ghost-street-overview.jpg" alt="Annotated point-cloud view showing the real road, reflective facade and ghost returns" loading="lazy">
-  <figcaption>Figure 1. Replace this caption with the description of your screenshot or schematic. If illustrative, label it “Schematic illustration — not measured LiDAR data.”</figcaption>
-</figure>
--->
+After checking the imagery and examining the cloud from several angles, I realized the "inner street" was a mirror image of the real street in front of the building. Can LiDAR reflect its own light beams like this and creat reflection on the other side?</p>
+
 <div class="image-placeholder"><span>FIGURE 01</span><strong>Add your first JPG here</strong><small>See the IMAGE SLOT 1 comment in ghost-streets.html</small></div>
 
-<h2>Why reflections produce ghost geometry</h2>
-<p>For a simple flat reflective surface, a virtual copy of a scene may appear behind the reflecting plane. A useful way to visualize this is as a mirror image: corresponding features lie across the plane, although real LiDAR reflection paths and reconstruction effects can be more complicated.</p>
-<p>The exact artifact depends on the sensor, incidence angle, surface properties, multiple reflections, and software handling of returns. Not every reflective surface creates a clean mirrored road.</p>
+<h2>What is actually happening physically</h2>
+<p>A LiDAR sensor measures distance from the travel time of a laser pulse and assumes the pulse traveled in a straight line. A large glass facade can break that assumption. When a pulse hits the glass at an oblique angle, part of it reflects specularly, like light off a mirror, instead of passing through or scattering. The reflected pulse hits an object in front of the building (the road, a vehicle, pole, tree or a curb) and returns to the sensor along the same path.
 
-<!-- IMAGE SLOT 2: Insert your diagram or JPG by uncommenting and editing the figure. -->
-<!--
+The sensor only knows the total travel time. It places the point along the original beam direction, at the full distance the pulse traveled, so the point ends up *behind* the glass. The result is a virtual copy of the street, mirrored across the plane of the facade. This effect is commonly called multipath reflection, or ghosting.
+
+Street canyons are especially prone to it. Flat, highly reflective glass surfaces and many oblique beam angles all raise the chances of mirrored returns.</p>
+
 <figure>
-  <img src="images/reflection-diagram.jpg" alt="Schematic showing a sensor, glass facade, reflected ray and virtual scene" loading="lazy">
-  <figcaption>Figure 2. Schematic illustration (not real LiDAR data): light reflection can create apparent points behind a facade.</figcaption>
+  <img
+    src="images/ghost-street.jpg"
+    alt="LiDAR ghost street"
+    loading="lazy"
+  >
+  <figcaption>
+    Figure 1. Reflection artifact observed
+    in a LiDAR point cloud.
+  </figcaption>
 </figure>
--->
 <div class="image-placeholder"><span>FIGURE 02</span><strong>Add a reflection diagram here</strong><small>See IMAGE SLOT 2 in the HTML source</small></div>
 
-<h2>How to recognize the artifact</h2>
-<p>Compare suspicious returns with camera imagery and the surrounding 3D geometry. Look for duplicated shapes across a planar facade, improbable objects inside buildings, and returns that change with the scanning viewpoint. A cross-section or top view can make the apparent symmetry easier to inspect.</p>
 
-<!-- IMAGE SLOT 3: Good location for your point-cloud screenshots / graphs. Duplicate <figure> as needed. -->
-<!--
-<figure>
-  <img src="images/point-cloud-cross-section.jpg" alt="Cross-section of point-cloud ghosting" loading="lazy">
-  <figcaption>Figure 3. Add source information, annotations and your interpretation.</figcaption>
-</figure>
--->
-<div class="image-placeholder"><span>FIGURE 03</span><strong>Add your point-cloud screenshot or graph here</strong><small>See IMAGE SLOT 3 in the HTML source</small></div>
+<h2>Why it matters in automotive</h2>
+<p>It may look like a small, harmless artifact, but ghost geometry can pass unnoticed into downstream processing. If it's not removed, it can contaminate feature extraction and end up in HD map layers as nonexistent roads, lane markings, or obstacles. Autonomous driving systems rely on these maps being accurate, so catching this kind of error is part of quality control. Otherwise an error like this would be a meme material in internet for neo-luddite people. (a.k.a Safe Street Rebel group).</p>
 
-<h2>Why it matters for mapping</h2>
-<p>Ghost returns can mislead manual annotation, create false obstacles, and affect automated extraction of curbs, lanes, and other mapped features. The practical lesson is to validate geometry against multiple views and contextual evidence before accepting every point as a real surface.</p>
-
-<!-- ADD MORE TEXT: Duplicate this example after replacing placeholder text:
-<h2>Your new section title</h2>
-<p>Your explanation goes here.</p>
--->
 </section>
 <div class="end-note">Thanks for reading. <a href="index.html">Explore more field notes →</a></div>
 </main>
