@@ -20,17 +20,14 @@
 <a class="back" href="index.html">← All Blogs</a>
 <p class="eyebrow">LIDAR / POINT-CLOUD ARTIFACTS</p>
 <h1>Ghost Streets: <em>A LiDAR Mirror Illusions</em></h1>
-<p class="article-lead">A point cloud may show a second street where there should only be a building. Here is why reflective surfaces can create misleading geometry.</p>
 <div class="byline">By Esmira Ibrahimli · October 2026 · Technical note</div>
 
 <!-- ARTICLE EDITING START: replace the paragraphs below with your own writing. -->
 <section class="prose">
-<h2>Ghost Streets: A LiDAR Mirror Illusion</h2>
 <p>A couple month ago during a routine day of mine I was reviewing a vehicle-mounted LiDAR point cloud, I noticed there is something wierdly odd. In point cloud inside a glass-fronted office building in central street of Tokyo what looked like a second street, complete with road surface and surrounding geometry. But in relaty the street-level imagery showed no road or parking area inside that building. Also lets keep in mind that it was my first time seeing someting like this in LiDAR point cloud.  I was working on HD map production and point-cloud extraction for autonomous driving, so artifacts like this matter to me.
 
 After checking the imagery and examining the cloud from several angles, I realized the "inner street" was a mirror image of the real street in front of the building. Can LiDAR reflect its own light beams like this and creat reflection on the other side?</p>
 
-<div class="image-placeholder"><span>FIGURE 01</span><strong>Add your first JPG here</strong><small>See the IMAGE SLOT 1 comment in ghost-streets.html</small></div>
 
 <h2>What is actually happening physically</h2>
 <p>A LiDAR sensor measures distance from the travel time of a laser pulse and assumes the pulse traveled in a straight line. A large glass facade can break that assumption. When a pulse hits the glass at an oblique angle, part of it reflects specularly, like light off a mirror, instead of passing through or scattering. The reflected pulse hits an object in front of the building (the road, a vehicle, pole, tree or a curb) and returns to the sensor along the same path.
@@ -50,7 +47,6 @@ Street canyons are especially prone to it. Flat, highly reflective glass surface
     in a LiDAR point cloud.
   </figcaption>
 </figure>
-<div class="image-placeholder"><span>FIGURE 02</span><strong>Add a reflection diagram here</strong><small>See IMAGE SLOT 2 in the HTML source</small></div>
 
 
 <h2>Why it matters in automotive</h2>
