@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -265,6 +265,15 @@
   }
   .proj-card:hover h3{opacity:0.6;}
   .proj-card p{font-size:0.82rem;opacity:0.62;line-height:1.4;}
+
+  .proj-card:focus-visible{outline:2px solid var(--navy);outline-offset:6px;}
+  .avatar-placeholder{
+    height:100%;align-items:center;justify-content:center;
+    padding:24px;color:var(--cream);text-align:center;
+    font-family:var(--serif);font-size:1.4rem;
+  }
+  .avatar-placeholder:not([hidden]){display:flex;}
+  .proj-thumb img[hidden]{display:none;}
 
   /* ---------- MAPS ---------- */
   .maps-grid{
@@ -736,6 +745,12 @@
   // ---- Portfolio projects data (edit / replace freely) ----
   const projects = [
     {
+      name: "Avatar: The Last Airbender — Interactive Map",
+      blurb: "Explore the Four Nations in an interactive map built with OpenLayers and JavaScript.",
+      img: "images/avatar-map.jpg",
+      url: "https://avatar-last-airbender-map.esmiraibrahimli.com/"
+    },
+    {
       name: "Munich Urban Canyon & LiDAR Analysis",
       blurb: "LiDAR-derived indicators, road-network analysis.",
       desc: "LiDAR-derived indicators and road-network analysis for Munich's urban canyon effects, built out with ArcGIS Experience Builder and delivered as an interactive dashboard and StoryMap.  Link : Dashboard: https://www.arcgis.com/apps/dashboards/786cfdfbc90d44e3887c152a505eb72d  ,StoryMap: https://arcg.is/145L9W2",
@@ -779,9 +794,9 @@
     },
     {
       name: "Avatar: The Last Airbender — Interactive Map",
-      blurb: "Explore the Avatar Nations in an interactive map built with OpenLayers and JavaScript",
-      desc: "A fun personal project bringing the world of Avatar: The Last Airbender to life through an interactive fantasy map. Explore the Four Nations with custom icons, labels, and image popups. Built with OpenLayers, JavaScript, HTML/CSS, and GeoJSON.",
-      img:"images/avatar-map.jpg",
+      blurb: "Explore the Avatar Nations in an interactive map built with OpenLayers and JavaScript.",
+      desc: " A fun personal project bringing the world of Avatar: The Last Airbender to life through an interactive fantasy map. Explore the Four Nations with custom icons, labels, and image popups. Built with OpenLayers, JavaScript, HTML/CSS, and GeoJSON.",
+      img: "images/avatar-map.jpg",
       url: "https://avatar-last-airbender-map.esmiraibrahimli.com/"
     }
     
@@ -789,14 +804,34 @@
 
   const projGrid = document.getElementById('projGrid');
   projects.forEach((p, i) => {
-    const btn = document.createElement('button');
+    const btn = document.createElement(p.url ? 'a' : 'button');
     btn.className = 'proj-card';
+    if (p.url) {
+      btn.href = p.url;
+      btn.target = '_blank';
+      btn.rel = 'noopener noreferrer';
+      btn.setAttribute('aria-label', p.name + ' (opens in a new tab)');
+    }
     btn.innerHTML = `
       <div class="proj-thumb"><img src="${p.img}" alt="${p.name}"></div>
       <h3>${p.name}</h3>
       <p>${p.blurb}</p>
     `;
-    btn.addEventListener('click', () => openProjModal(i));
+    if (p.url) {
+      const thumbnail = btn.querySelector('.proj-thumb');
+      const image = thumbnail.querySelector('img');
+      const placeholder = document.createElement('span');
+      placeholder.className = 'avatar-placeholder';
+      placeholder.textContent = 'Avatar: The Last Airbender';
+      thumbnail.appendChild(placeholder);
+      const showImage = () => { placeholder.hidden = true; image.hidden = false; };
+      const showPlaceholder = () => { placeholder.hidden = false; image.hidden = true; };
+      image.addEventListener('load', showImage);
+      image.addEventListener('error', showPlaceholder);
+      if (image.complete) image.naturalWidth ? showImage() : showPlaceholder();
+    } else {
+      btn.addEventListener('click', () => openProjModal(i));
+    }
     projGrid.appendChild(btn);
   });
 
